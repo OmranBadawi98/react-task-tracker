@@ -1,9 +1,11 @@
 import Header from './components/Header'
 import Tasks from './components/Tasks'
 import AddTask from './components/AddTask'
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
+// import DB from '../src/db.json'
 
 const App = () => {
+  const [showAddTask, sethowAddTask] = useState(false)
   const [tasks, setTasks] = useState([
     {
       id: 1,
@@ -25,10 +27,33 @@ const App = () => {
     },
   ])
 
+  // useEffect(() => {
+  //   const getTasks = async () => {
+  //     const tasksFromServer = await fetchTasks()
+  //     setTasks(tasksFromServer)
+  //   }
+  //   getTasks()
+  // }, [])
+  // Fetch Tasks
+  // const fetchTasks = async () => {
+  //   const res = await fetch('httl://localhost:5000/tasks')
+  //   const data = await res.json()
+
+  //   return data
+  // }
+
+  // Add Task
+  const addTask = (task) => {
+    const id = Math.floor(Math.random() * 10000) + 1
+    const newTask = { id, ...task }
+    setTasks([...tasks, newTask])
+  }
+
+  // Delete  Task
   const deleteTask = (id) => {
     setTasks(tasks.filter((task) => task.id !== id))
   }
-
+  // Togge Reminder
   const toggleReminder = (id) => {
     setTasks(
       tasks.map((task) =>
@@ -39,8 +64,8 @@ const App = () => {
 
   return (
     <div className='container'>
-      <Header />
-      <AddTask />
+      <Header onAdd={() => sethowAddTask(!showAddTask)} showAdd={showAddTask} />
+      {showAddTask && <AddTask onAdd={addTask} />}
       {tasks.length > 0 ? (
         <Tasks tasks={tasks} onDelete={deleteTask} onToggle={toggleReminder} />
       ) : (
