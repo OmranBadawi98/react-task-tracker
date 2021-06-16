@@ -1,4 +1,5 @@
 import { useState } from 'react'
+
 const AddTask = ({ onAdd }) => {
   const [text, setText] = useState('')
   const [day, setDay] = useState('')
@@ -8,7 +9,7 @@ const AddTask = ({ onAdd }) => {
     e.preventDefault()
 
     if (!text) {
-      alert('Please add A task ')
+      alert('Please add a task')
       return
     }
 
@@ -18,13 +19,13 @@ const AddTask = ({ onAdd }) => {
     setDay('')
     setReminder(false)
   }
+
   return (
     <form className='add-form' onSubmit={onSubmit}>
       <div className='form-control'>
         <label>Task</label>
         <input
           type='text'
-          d
           placeholder='Add Task'
           value={text}
           onChange={(e) => setText(e.target.value)}
@@ -34,7 +35,7 @@ const AddTask = ({ onAdd }) => {
         <label>Day & Time</label>
         <input
           type='text'
-          placeholder='ADD Day & Time'
+          placeholder='Add Day & Time'
           value={day}
           onChange={(e) => setDay(e.target.value)}
         />
@@ -48,8 +49,10 @@ const AddTask = ({ onAdd }) => {
           onChange={(e) => setReminder(e.currentTarget.checked)}
         />
       </div>
-      <input type='submit' value='save task' className='btn btn-block' />
+
+      <input type='submit' value='Save Task' className='btn btn-block' />
     </form>
   )
 }
+
 export default AddTask

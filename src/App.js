@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react'
+import { useState } from 'react'
 import { BrowserRouter as Router, Route } from 'react-router-dom'
 import Header from './components/Header'
 import Footer from './components/Footer'
@@ -8,7 +8,7 @@ import About from './components/About'
 // import DB from '../src/db.json'
 
 const App = () => {
-  const [showAddTask, sethowAddTask] = useState(false)
+  const [showAddTask, setshowAddTask] = useState(false)
   const [tasks, setTasks] = useState([
     {
       id: 1,
@@ -69,7 +69,7 @@ const App = () => {
     <Router>
       <div className='container'>
         <Header
-          onAdd={() => setShowAddTask(!showAddTask)}
+          onAdd={() => setshowAddTask(!showAddTask)}
           showAdd={showAddTask}
         />
         <Route

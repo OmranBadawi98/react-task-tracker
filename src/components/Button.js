@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types'
 
-function Button({ color, text, onClick }) {
+const Button = ({ color, text, onClick }) => {
   return (
     <button
       onClick={onClick}
@@ -17,8 +17,8 @@ Button.defaultProps = {
 }
 
 Button.propTypes = {
-  color: PropTypes.string,
   text: PropTypes.string,
+  color: PropTypes.string,
   onClick: PropTypes.func,
 }
 
